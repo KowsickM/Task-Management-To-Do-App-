@@ -38,7 +38,7 @@ Make sure you have these installed before running the project:
   Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
 
-## connetion string 
+## Connecrtion String 
 
 In appsettings.json of the API project, update the connection string:
 
