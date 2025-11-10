@@ -35,7 +35,7 @@ namespace TaskManagement_To_Do_Api_.Controllers
                 TaskList = JsonConvert.DeserializeObject<List<TaskModel>>(data);
             }
 
-            // ✅ Filter by status if provided
+            
             if (!string.IsNullOrEmpty(status))
             {
                 if (Enum.TryParse<TaskManagement_To_Do_Api_.Models.TaskStatus>(status, out var parsedStatus))
@@ -63,7 +63,7 @@ namespace TaskManagement_To_Do_Api_.Controllers
             return View();
         }
 
-      
+
 
         [HttpPost]
         public IActionResult CreateTasks(TaskModel model)
@@ -89,26 +89,24 @@ namespace TaskManagement_To_Do_Api_.Controllers
             }
         }
 
-        [HttpGet]
+        
 
         public IActionResult EditTasks(int id)
         {
             try
             {
-                TaskModel Model = new TaskModel();
                 HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/Task/Get/" + id).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     string data = response.Content.ReadAsStringAsync().Result;
-                    Model = JsonConvert.DeserializeObject<TaskModel>(data);
-
+                    var model = JsonConvert.DeserializeObject<TaskModel>(data);
+                    return Json(model); 
                 }
-                return View(Model);
+                return Json(new { error = "Task not found" });
             }
             catch (Exception ex)
             {
-
-                return BadRequest(ex.Message);
+                return Json(new { error = ex.Message });
             }
         }
 
@@ -140,20 +138,21 @@ namespace TaskManagement_To_Do_Api_.Controllers
 
 
 
-        [HttpPost, ActionName("DeleteTask")]
-        public IActionResult DeleteConfirmed(int id)
+       
+
+        [HttpPost]
+        public IActionResult DeleteTask(int id)
         {
             HttpResponseMessage response = _client.DeleteAsync(_client.BaseAddress + "/Task/Delete/" + id).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                TempData["successMessage"] = "Task Deleted";
-                return RedirectToAction("List");
+                return Json(new { success = true, message = "Task deleted successfully!" });
             }
 
-            TempData["errorMessage"] = "Failed to delete.";
-            return RedirectToAction("List");
+            return Json(new { success = false, message = "Failed to delete the task." });
         }
+
 
 
 
