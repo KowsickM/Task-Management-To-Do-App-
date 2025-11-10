@@ -48,10 +48,10 @@ In appsettings.json of the API project, update the connection string:
 
 ## Screen Shot 
 To create the Task
-./ScreenShots/Create.png
+ScreenShots/Create.png
 After creating to list the task
-./ScreenShots/List.png
+ScreenShots/List.png
 And then to edit the Task
-./ScreenShots/Edit.png
+ScreenShots/Edit.png
 To delete the particular Task with confirmation
-./ScreenShots/Delete.png
+ScreenShots/Delete.png
