@@ -46,3 +46,12 @@ In appsettings.json of the API project, update the connection string:
   "DefaultConnection": "Data Source=YOUR_SERVER_NAME;Initial Catalog=TaskDb;User ID=sa;Password=yourpassword;TrustServerCertificate=True;"
 }
 
+## Screen Shot 
+To create the Task
+./ScreenShots/Create.png
+After creating to list the task
+./ScreenShots/List.png
+And then to edit the Task
+./ScreenShots/Edit.png
+To delete the particular Task with confirmation
+./ScreenShots/Delete.png
